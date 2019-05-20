@@ -44,11 +44,37 @@ function getRecipes() {
   return db("recipes");
 }
 
+function getARecipe(recipeID) {
+  return db("recipes")
+    .where({ id: recipeID })
+    .first();
+}
+
+function postRecipe(newRecipe) {
+  return db("recipes").insert(newRecipe);
+}
+
+function putRecipe(recipe, recipeID) {
+  return db("recipes")
+    .where({ id: recipeID })
+    .update(recipe);
+}
+
+function deleteRecipe(id) {
+  return db("recipes")
+    .where({ id: id })
+    .del();
+}
+
 module.exports = {
   getDishes,
   getDish,
   postDish,
   putDish,
   deleteDish,
-  getRecipes
+  getRecipes,
+  getARecipe,
+  postRecipe,
+  putRecipe,
+  deleteRecipe
 };
